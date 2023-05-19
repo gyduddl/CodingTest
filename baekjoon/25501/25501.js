@@ -1,39 +1,44 @@
+// 팰린드롬
+
 const fs = require('fs');
 const filePath = process.platform === 'linux' ? '/dev/stdin' : './input.txt';
-// trim을 안써서 백준에서 틀림.문자열 좌우에서 공백을 제거하는 함수가 trim() 함수 입니다
-let input =fs.readFileSync(filePath).toString().trim().split('\r\n');
+const input = fs.readFileSync(filePath).toString().trim().split('\r\n')
 
 input.shift()
-let count =0;
-const recursion=(s, l, r)=>{
-    count++
-    if(l>=r)return 1;
-    else if (s[l]!==s[r]) return 0;
-    else return recursion(s, l+1, r-1)
-}
 
-const isPalindrome=(s)=>{
-    return recursion(s,0,s.length-1)
-}
-for(let x of input){
-    count = 0;
-    // console.log(`${isPalindrome(x)} ${count}`)
-    console.log(isPalindrome(x),count)
-}
+// let count = 0
+
+// const recursion=(str,n,m)=>{
+//     count++
+//     // 이게 왜 1인지 모르겠네..
+//     // 아아 m이 n보다 작거나 같다는것은 재귀함수를 계속 지나서 같게 되었으니
+//     // 모든 조건을 통과한 팰린드롬이라서 1이다.
+//     if(n>=m) return 1
+//     else if(str[n]!==str[m])return 0
+//     else return recursion(str,n+1,m-1)
+// }
+
+
+// const isPalindrome=(str)=>{
+//     return recursion(str,0,str.length-1)
+// }
+// for(let x of input){
+//     count = 0
+//     console.log(isPalindrome(x),count)
+// }
 
 
 //다른 방법
-// const [N, ...rest] = input;
+const recursion=(str,n,m,c)=>{
+    if(n>=m) return [1, c]
+    else if(str[n]!==str[m])return [0,c] 
+    else return recursion(str,n+1,m-1,c+1)
+}
 
-// const recursion=(s, l, r,c)=>{
-//     if(l>=r)return [1,c];
-//     else if (s[l]!==s[r]) return [0,c];
-//     else return recursion(s, l+1, r-1,c+1)
-// }
 
-// const isPalindrome=(s)=>{
-//     return recursion(s,0,s.length-1,1)
-// }
+const isPalindrome=(str)=>{
+    return recursion(str,0,str.length-1,1)
+}
+let answer = input.map(x=>isPalindrome(x).join(' '))
 
-// const answer = rest.map((s) => isPalindrome(s).join(" "));
-// console.log(answer.join("\n"));
+console.log(answer.join('\n'))
