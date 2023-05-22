@@ -19,3 +19,25 @@ function solution(code) {
 }
 
 console.log(solution('abc1abc1abc')) //"acbac"
+
+//다른 방법
+// function solution(code) {
+//     let str = ''
+//     let mode = 0
+//     for(let i =0; i < code.length; i++){
+//         if(mode){ //mode =1 => true
+//             if(code[i]!=='1'&&i%2===1) str += code[i]
+//             if(code[i]==='1') mode=0
+//         }else { //0=> false
+//             if(code[i]!=='1'&&i%2===0) str += code[i]
+//             if(code[i]==='1') mode=1
+//         }
+
+//             console.log(str, mode)
+//     }
+    
+//     // console.log(str)
+//     return str?str:"EMPTY";
+// }
+
+// console.log(solution('')) //acbac
