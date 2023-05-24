@@ -4,6 +4,7 @@
 // 어느 두 주사위에서 나온 숫자가 p로 같고 나머지 두 주사위에서 나온 숫자가 각각 p와 다른 q, r(q ≠ r)이라면 q × r점을 얻습니다.
 // 네 주사위에 적힌 숫자가 모두 다르다면 나온 숫자 중 가장 작은 숫자 만큼의 점수를 얻습니다.
 
+
 function solution(a, b, c, d) {
     var answer = 0;
     if(a===b&&a===c&&a===d){
@@ -38,7 +39,6 @@ function solution(a, b, c, d) {
     }else{
         answer =Math.min(a,b,c,d)
     }
-
     return answer;
 }
 
