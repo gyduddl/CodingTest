@@ -6,14 +6,40 @@
 
 function solution(a, b, c, d) {
     var answer = 0;
-    // switch(4){
-    //     case (a===b&&a===c&&a===d&&b===c&&c===d):
-    //         answer=1111*a;
-    //         break;
-    //     case
-    // }
+    if(a===b&&a===c&&a===d){
+        answer+=1111*a
+    }else if(a===b&&d===c){
+        //Math.abs 절대값 구하기
+        answer=(a+d)*Math.abs(a-d)
+    }else if(a===d&b===c){
+        answer=(a+b)*Math.abs(a-b)
+    }else if(a===c&&d===b){
+        answer=(a+d)*Math.abs(a-d)
+    }else if(a == b && b == c) {
+        answer =  Math.pow((10*a+d),2);
+    }else if(a == d && d == c) {
+        answer =  Math.pow((10*a+b),2);
+    }else if(b == d && d == c) {
+        answer = Math.pow((10*d+a),2);
+    }else if(a == d && d == b) {
+        answer = Math.pow((10*a+c),2);
+    }else if( a == b && a != c && a != d && c!=d) {
+        answer = c*d;
+    }else if( a == c && a != b && a != d && b!=d) {
+        answer = b*d;
+    }else if( a == d && a != b && a != c && b!=c) {
+        answer = b*c;
+    }else if( b == c && b != a && b != d && a!=d) {
+        answer = a*d;
+    }else if( b == d && b != a && b != c && a!=c) {
+        answer = a*c;
+    }else if( c == d && c != b && c != a && a!=b) {
+        answer = a*b;
+    }else{
+        answer =Math.min(a,b,c,d)
+    }
 
-    return (a===b&&a===c&&a===d&&b===c&&c===d);
+    return answer;
 }
 
 console.log(solution(2,2,2,2))
