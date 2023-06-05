@@ -3,8 +3,8 @@
 
 const fs = require('fs');
 const filePath = process.platform === 'linux' ? '/dev/stdin' : './input.txt';
-
-let input =Number(fs.readFileSync(filePath).toString().split('\r\n'));
+// [0]이거 안해줘서 백준에서 틀림
+let input =Number(fs.readFileSync(filePath).toString().split('\r\n')[0]);
 
 // let num =[0,1]
 

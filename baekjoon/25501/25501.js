@@ -10,8 +10,7 @@ input.shift()
 
 // const recursion=(str,n,m)=>{
 //     count++
-//     // 이게 왜 1인지 모르겠네..
-//     // 아아 m이 n보다 작거나 같다는것은 재귀함수를 계속 지나서 같게 되었으니
+//     //  m이 n보다 작거나 같다는것은 재귀함수를 계속 지나서 같게 되었으니
 //     // 모든 조건을 통과한 팰린드롬이라서 1이다.
 //     if(n>=m) return 1
 //     else if(str[n]!==str[m])return 0
