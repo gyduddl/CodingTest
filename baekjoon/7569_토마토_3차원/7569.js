@@ -5,45 +5,45 @@ const fs = require('fs');
 const filePath = process.platform === 'linux' ? '/dev/stdin' : './input.txt';
 let input = fs.readFileSync(filePath).toString().trim().split('\r\n');
 
-class Node{
-    constructor(data){
-        this.value=data;
-        this.next = null;
-        // this.x = x;
-        // this.y = y;
-        // this.z = z;
+class Node {
+    constructor(x, y, z) {
+      this.x = x;
+      this.y = y;
+      this.z = z;
+      this.next = null;
     }
-}
-
-class Queue{
-    constructor(){
-        this.first = null;
-        this.last = null;
-        this.size=0;
+  }
+  class Queue {
+    constructor() {
+      this.head = null;
+      this.tail = null;
+      this.size = 0;
     }
-    push(data){
-        let node = new Node(data)
-        if(!this.first){
-            this.first = node;
-            this.last = node;
-        }else{
-            this.last.next = node;
-            this.last =node;
-        }
-        return ++this.size;
+    push(x, y, z) {
+      let node = new Node(x, y, z);
+      if (this.size === 0) {
+        this.head = node;
+      } else {
+        this.tail.next = node;
+      }
+      this.tail = node;
+      this.size++;
     }
-    shift(){
-        if(!this.first) return null;
-        let node = this.first;
-        if(this.first === this.last) this.last=null;
-        this.first = this.first.next;
-        this.size--;
-        return node.value
+    shift() {
+      let temp = this.head;
+      if (this.size === 0) {
+        this.head = null;
+        this.tail = null;
+      } else {
+        this.head = this.head.next;
+      }
+      this.size--;
+      return temp;
     }
-    length(){
-        return this.size
+    get length() {
+      return this.size;
     }
-}
+  }
 
 let [m,n,h] = input.shift().split(' ').map(Number)
 
@@ -66,36 +66,31 @@ let queue =new Queue();
         for(let y =0; y<n; y++){
             for(let z=0; z<m; z++){
                 if(tomato[x][y][z]===1){
-                    queue.push([x,y,z])
+                    queue.push(x,y,z)
                 }
             }
         }
     }
-
-  
     while(queue.length){
-
             let v = queue.shift()
-            console.log(v)
-            // let [x,y,z] = v
-        //     for(let k=0; k<6; k++){
-        //         let nx = x+ dx[k]
-        //         let ny = y + dy[k]
-        //         let nz = z+dz[k]
-        //         if(nx>=0 && ny>=0 && nz>=0 && nx < h && ny<n && nz<m && tomato[nx][ny][nz]===0){
-        //             queue.push([nx,ny,nz])
-        //             tomato[nx][ny][nz]=tomato[x][y][z]+1
-        //     }
-        // }
+            let [x,y,z] =[v.x,v.y,v.z]
+            for(let k=0; k<6; k++){
+                let nx = x+ dx[k]
+                let ny = y + dy[k]
+                let nz = z+dz[k]
+                if(nx>=0 && ny>=0 && nz>=0 && nx < h && ny<n && nz<m && tomato[nx][ny][nz]===0){
+                    queue.push(nx,ny,nz)
+                    tomato[nx][ny][nz]=tomato[x][y][z]+1
+            }
+        }
     }
-
-    // for(let i=0; i<h; i++){
-    //     for(j=0; j<n; j++){
-    //         for(let k=0; k<m; k++){
-    //             return tomato[i][j][k]===0? -1: Math.max(0,tomato[i][j][k]-1)
-    //         }
-    //     }
-    // }
+    for(let i=0; i<h; i++){
+        for(j=0; j<n; j++){
+            for(let k=0; k<m; k++){
+                return tomato[i][j][k]===0? -1: Math.max(0,tomato[i][j][k]-1)
+            }
+        }
+    }
 }
 
 console.log(solution(m,n,h,tomato))
