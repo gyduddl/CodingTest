@@ -1,20 +1,24 @@
-function solution(board, moves){
-    let answer=0;
-    let stack =[];
-    moves.forEach(pos => {
-        for(let i=0; i<board.length; i++){
-            if(board[i][pos-1]!==0){
-                let tmp = board[i][pos-1];
-                board[i][pos-1]=0;
-                if(stack[stack.length-1]===tmp){
-                    stack.pop();
-                    answer+=2
-                }else stack.push(tmp);
-                break;
+function solution(a,b){
+    let answer =0;
+    let stack =[]
+    while(b.length){
+        let n = b.shift()-1
+        for(let i =0; i<a.length; i++){
+            if(a[i][n]!==0){
+                if(stack[stack.length-1]===a[i][n]){
+                    answer+=2;
+                    stack.pop()
+                }else{
+                    stack.push(a[i][n])
+                }
+                a[i][n]=0
+                break //for문을 끝내줌!!
+
             }
         }
-    });
-    return answer;
+    }
+
+    return answer
 }
 
 let a=[[0,0,0,0,0],

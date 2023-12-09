@@ -1,15 +1,11 @@
-function solution(need, plan){
-    let answer="YES";
-    let queue = need.split('');
-    for(let s of plan){
-        if(queue.includes(s)){
-            if(s!==queue.shift()) return "No"
-        }
+function solution(a,b){
+    let queue =[]
+    for(let x of b){
+        if(a.includes(x)) queue.push(x)
     }
-    if(queue.length>0) return "No"
-    return answer;
+    return queue.join('')===a? "YES":"NO"
 }
 
 let a="CBA";
-let b="CBDGAE";
+let b="CBDGE";
 console.log(solution(a, b));

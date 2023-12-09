@@ -1,15 +1,27 @@
-function solution(s){  
-    let answer;
-    let stack =[];
-    for(let x of s){
-        if(x===")") {
-            while(stack.pop()!=="("); // (가 아니라면 stack.pop()을 계속 해준다. 
+// function solution(arr){
+//     let stack =[]
+//     let strarr1= []
+//     for(let x of arr){
+//         if(!stack.length && x!=="(") strarr1.push(x)
+//         if(x==='('){
+//             stack.push(x)
+//         }else if(x===')'){
+//             stack.pop()
+//         }
+//     }
+//     return strarr1.join('')
+// }
+
+function solution(arr){
+    let stack =[]
+    for(let x of arr){
+        if(x===')'){
+            while(stack.pop()!=='(');
         }else{
             stack.push(x)
         }
     }
-    answer = stack.join('')
-    return answer;
+    return stack.join('')
 }
 
 let str="(A(BC)D)EF(G(H)(IJ)K)LM(N)";

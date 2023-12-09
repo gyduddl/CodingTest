@@ -1,21 +1,20 @@
 //후위식연산(postfix) _ 스택
 
-function solution(s){  
-    let answer;
-    let stack =[];
-    for(let x of s){
-        if(!isNaN(x)) stack.push(Number(x))
+function solution(str){
+    let stack =[]
+    for(let x of str){
+        if(!isNaN(x)) {stack.push(x)}
         else{
-            let lt=stack.pop();
-            let rt = stack.pop()
-            if(x==='+') stack.push(rt+lt)
-            else if(x==="*") stack.push(rt*lt)
-            else if(x==='-') stack.push(rt-lt)
-            else if(x==='/') stack.push(rt/lt)
+            let L = Number(stack.pop())
+            let R = Number(stack.pop())
+            if(x==='+') stack.push(R+L)
+            if(x==='-') stack.push(R-L)
+            if(x==='*') stack.push(R*L)
+            if(x==='/') stack.push(R/L)
         }
+
     }
-    answer= stack[0]
-    return answer;
+    return stack[0]
 }
 
 let str="352+*9-";
