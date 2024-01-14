@@ -2,13 +2,13 @@ const fs = require('fs');
 const filePath = process.platform === 'linux' ? '/dev/stdin' : './input.txt';
 let input = fs.readFileSync(filePath).toString().trim().split('\r\n');
 
-// let [n,m] = input.shift().split(' ').map(Number)
+let [n,m] = input.shift().split(' ').map(Number)
 
-// let miro = []
+let miro = []
 
-// for(let i =0; i<input.length;i++){
-//     miro.push(input[i].split(''))
-// }
+for(let i =0; i<input.length;i++){
+    miro.push(input[i].split(''))
+}
 
 const sol = (input) => {
     let answer = 0;
@@ -80,60 +80,3 @@ const sol = (input) => {
 
 console.log(sol(input))
 
-//아니 똑같은 풀이인데 왜 난 틀리는 건데....
-// function sol(n,m,miro){
-//   let check= Array.from({length:n},()=>Array(m).fill(0))
-//   let D,S;
-//   let water=[]
-//   let answer=0
-//   for(let i=0; i<n;i++){
-//     for(let j=0; j<m;j++){
-//       if(miro[i][j]==='S') S = [i,j]
-//       if(miro[i][j]==='D') D = [i,j]
-//       if(miro[i][j]==='*') water.push([i,j])
-//     }
-//   }
-//   let dx =[-1,0,1,0]
-//   let dy = [0,1,0,-1]
-//   function rate(){
-//     let squeue =[]
-//     for(let [x,y] of water){
-//       for(let k=0; k<4; k++){
-//         let nx = x +dx[k]
-//         let ny = y+dy[k]
-//         if(nx<0 || nx>=n || ny<0 || ny>=m) continue
-//         if(miro[nx][ny]==='.'){
-//           miro[nx][ny]='*'
-//           squeue.push([nx,ny])
-//         }
-//       }
-//     }
-//     water.push(...squeue)
-//   }
-
-//   function dfs(){
-//     let queue =[]
-//     queue.push([...S,0])
-//     check[S[0]][S[1]]=1
-//     while(queue.length){
-//       let [x,y,cnt] = queue.shift()
-//       rate()
-//       if(x===D[0]&& y===D[1]) {
-//         answer = cnt;
-//         break
-//       }
-//       for(let k=0; k<4;k++){
-//         let nx = x+dx[k]
-//         let ny = y+ dy[k]
-//         if(nx<0 || nx>=n || ny<0 || ny>=m) continue
-//         if(miro[nx][ny]==='*'||miro[nx][ny]==='X'||check[nx][ny]) continue
-//         check[nx][ny] =1
-//         queue.push([nx,ny,cnt+1])
-//       }
-//     }
-//   }
-//   dfs()
-//   return answer || "KAKTUS"
-// }
-
-//   console.log(sol(n,m,miro))
