@@ -30,32 +30,33 @@
 // }
 
 function solution(board){
+    let len = board.length;
     let answer =0;
-    let dx = [-1,-1,0,1,1,1,0,-1]
-    let dy = [0,1,1,1,0,-1,-1,-1]
-    let len = board.length
-    let queue=[[0,0]]
+    let move = [[1,0],[1,1],[0,1],[-1,1],[-1,0],[-1,-1],[0,-1],[1,-1]]
+    let queue=[]
     for(let i=0; i<len; i++){
-        for(let j=0; j<len; j++){
+        for(let j=0;j<len; j++){
             if(board[i][j]===1){
-                board[i][j]=0;
-                queue.push([i,j])
                 answer++
-                while(queue.length){
-                    let [x,y] = queue.shift()
-                    for(let k=0; k<8; k++){
-                        let nx = x+dx[k]
-                        let ny = y+dy[k]
-                        if(nx>=0 && nx<len && ny>=0 && ny<len && board[nx][ny]===1){
-                            board[nx][ny]=0
-                            queue.push([nx,ny])
-                        }
+                board[i][j]=0
+
+                queue.push([i,j])
+   
+            }
+            while(queue.length){
+                let [x,y] = queue.shift()
+                for(let k=0;k<8;k++){
+                    let [nx,ny] = [x+move[k][0], y+move[k][1]]
+                    if(nx>=0 && nx<len && ny>=0 && ny<len && board[nx][ny]===1){
+                        board[nx][ny]=0
+                        queue.push([nx,ny])
                     }
                 }
-
             }
         }
     }
+
+
     return answer
 }
 

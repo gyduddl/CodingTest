@@ -6,4 +6,4 @@ let arr= input[0].split(' ').map(Number)
 
 let sum = arr.reduce((a,b)=> a+b)
 
-console.log(sum)
+console.log(sum%3===0?1:0)

@@ -22,22 +22,22 @@
 // }
 
 function solution(s, e){
-    let answer =0;
     let ch = Array.from({length:10001},()=>0)
-    let graph = Array.from({length:10001},()=>0)
-    function dfs(v){
-        if(v===e) return graph[v]
-        for(let nx of [v+1,v-1,v+5]){
+    let graph =Array.from({length:10001},()=>0)
+    let queue =[]
+    ch[s]=1
+    queue.push(s)
+    while(queue.length){
+        let v = queue.shift()
+        for(let nx of [v-1,v+1,v+5]){
             if(nx===e) return graph[v]+1
-            if(ch[nx]===0){
+            else if(nx>=0 && ch[nx]===0 && nx<10001){
                 ch[nx]=1
-                graph[nx] = graph[v]+1
-                dfs(nx)
+                graph[nx]= graph[v]+1
+                queue.push(nx)
             }
         }
     }
-    dfs(s)
-    return answer;
 }
 
 console.log(solution(5,14));//3

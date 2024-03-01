@@ -27,27 +27,24 @@ function solution(n){
     let answer =[]
     let ch = Array.from({length:n+1},()=>0)
     function dfs(v){
-        let path = ""
         if(v===n+1){
-            for(let i=1; i<n+1;i++){
+            let path=''
+            for(let i=1; i<=n;i++){
                 if(ch[i]===1){
-                    path+=i + " "
+                    path+=(i+' ')
                 }
             }
-        if(path.length>0) answer.push(path.trim())
+            if(path.length>0) answer.push(path.trim())
         }else{
-                if(ch[v]===0){
-                    ch[v]=1
-                    dfs(v+1)
-                    ch[v]=0
-                    dfs(v+1)
-            }
+            ch[v]=1
+            dfs(v+1)
+            ch[v]=0
+            dfs(v+1)
         }
     }
     dfs(1)
     return answer
 }
-
 
 console.log(solution(3))
 // 1 2 3

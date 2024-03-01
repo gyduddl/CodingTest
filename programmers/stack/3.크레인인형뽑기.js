@@ -1,25 +1,51 @@
-function solution(a,b){
-    let answer =0;
-    let stack =[]
-    while(b.length){
-        let n = b.shift()-1
-        for(let i =0; i<a.length; i++){
-            if(a[i][n]!==0){
-                if(stack[stack.length-1]===a[i][n]){
-                    answer+=2;
-                    stack.pop()
-                }else{
-                    stack.push(a[i][n])
-                }
-                a[i][n]=0
-                break //for문을 끝내줌!!
+// function solution(a,b){
+//     let answer =0;
+//     let stack =[]
+//     while(b.length){
+//         let n = b.shift()-1
+//         for(let i =0; i<a.length; i++){
+//             if(a[i][n]!==0){
+//                 if(stack[stack.length-1]===a[i][n]){
+//                     answer+=2;
+//                     stack.pop()
+//                 }else{
+//                     stack.push(a[i][n])
+//                 }
+//                 a[i][n]=0
+//                 break //for문을 끝내줌!!
 
+//             }
+//         }
+//     }
+
+//     return answer
+// }
+
+
+
+function solution(a,b){
+    let stack =[]
+    let num =0
+    let len = a.length
+    for(let row of b){
+        for(let i=0; i<len;i++){
+            if(a[i][row-1]!==0){
+                let toy = a[i][row-1]
+                if(stack[stack.length-1]===toy){
+                    stack.pop()
+                    num+=2
+                }else{
+                    stack.push(toy)
+                }
+                a[i][row-1]=0
+                break
             }
         }
     }
-
-    return answer
+    return num
 }
+
+
 
 let a=[[0,0,0,0,0],
        [0,0,1,0,3],
