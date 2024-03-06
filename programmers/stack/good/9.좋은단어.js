@@ -2,11 +2,15 @@ const fs = require('fs');
 const filePath = process.platform === 'linux' ? '/dev/stdin' : './input.txt';
 let input = fs.readFileSync(filePath).toString().trim().split('\r\n');
 
+input = input[0].split(' ')
+
+console.log(input)
+
 function solution(arr){
 
     let count = 0;
     for(let x of arr){
-        if(check(x)) count++
+        if(!check(x)) count++
     }
 
     function check(x){
@@ -25,5 +29,5 @@ function solution(arr){
     return count
 }
 
-let arr = ['AAA', 'AA', 'AB']
-console.log(solution(arr))//2
+let arr = ['AAA', 'BB', 'ABAB']
+console.log(solution(input))//2
