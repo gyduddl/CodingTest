@@ -23,30 +23,26 @@
 //     return answer;
 // }
 
-function solution(n){
-    let answer =[]
-    let ch = Array.from({length:n+1},()=>0)
-    function dfs(v){
-        if(v===n+1){
-            let path=''
-            for(let i=1; i<=n;i++){
-                if(ch[i]===1){
-                    path+=(i+' ')
-                }
+function solution(n) {
+    let set = new Set();
+    let ch = Array.from({ length: n + 1 }, () => 0);
+    function dfs(v, s, path) {
+        if (v > 0 && !set.has(path)) {
+            set.add(path.trim());
+        }
+        for (let i = n; i >= s; i--) {
+            if (ch[i] === 0) {
+                ch[i] = 1;
+                dfs(v + 1, i, path + ' ' + i);
+                ch[i] = 0;
             }
-            if(path.length>0) answer.push(path.trim())
-        }else{
-            ch[v]=1
-            dfs(v+1)
-            ch[v]=0
-            dfs(v+1)
         }
     }
-    dfs(1)
-    return answer
+    dfs(0, 1, '');
+    console.log([...set].reverse());
 }
 
-console.log(solution(3))
+console.log(solution(3));
 // 1 2 3
 // 1 2
 // 1 3

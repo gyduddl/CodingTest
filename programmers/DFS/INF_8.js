@@ -17,21 +17,21 @@
 //     return answer;
 // }
 
-function solution(n,m){
-    let answer = []
-    let path =Array.from({length:m},()=>0)
-    function dfs(v){
-        if(v===m){
-            answer.push(path.join(' '))
-        }else{
-            for(let i=1; i<=n;i++){
-                path[v]=i
-                dfs(v+1)
+function solution(n, r) {
+    let answer = [];
+    let path = Array.from({ length: r }, () => 0);
+    function dfs(v) {
+        if (v === r) {
+            answer.push(path.join(' '));
+        } else {
+            for (let i = 1; i <= n; i++) {
+                path[v] = i;
+                dfs(v + 1);
             }
         }
     }
-    dfs(0)
-    return answer
+    dfs(0);
+    return answer;
 }
 
 console.log(solution(3, 2));
