@@ -1,6 +1,6 @@
-// 6. 송아지 찾기(BFS) -> 방문 여부를 다시 풀 필요 없을 경우 BFS를 사용하면 된다. 
+// 6. 송아지 찾기(BFS) -> 방문 여부를 다시 풀 필요 없을 경우 BFS를 사용하면 된다.
 
-// function solution(s, e){  
+// function solution(s, e){
 //     let answer = 0;
 //     let ch = Array.from({length:10001},()=>0)
 //     let graph = Array.from({length:10001},()=>0)
@@ -21,23 +21,22 @@
 //     return answer;
 // }
 
-function solution(s, e){
-    let ch = Array.from({length:10001},()=>0)
-    let graph =Array.from({length:10001},()=>0)
-    let queue =[]
-    ch[s]=1
-    queue.push(s)
-    while(queue.length){
-        let v = queue.shift()
-        for(let nx of [v-1,v+1,v+5]){
-            if(nx===e) return graph[v]+1
-            else if(nx>=0 && ch[nx]===0 && nx<10001){
-                ch[nx]=1
-                graph[nx]= graph[v]+1
-                queue.push(nx)
+function solution(n, m) {
+    let set = new Set();
+    let graph = Array.from({ length: 10001 }, () => 0);
+    let queue = [n];
+    set.add(n);
+    while (queue.length) {
+        let v = queue.shift();
+        for (let nx of [v + 1, v - 1, v + 5]) {
+            if (nx === m) return graph[v] + 1;
+            if (!set.has(nx)) {
+                set.add(nx);
+                graph[nx] = graph[v] + 1;
+                queue.push(nx);
             }
         }
     }
 }
 
-console.log(solution(5,14));//3
+console.log(solution(5, 14)); //3
