@@ -12,17 +12,14 @@ console.log(answer);
 if (Number(n) !== 100) {
     console.log('ff');
     for (let x of num) {
-        // console.log('1', x);
         let count = [11, 0];
         for (let i = 0; i < 10; i++) {
             if (!set.has(x)) {
-                // if (Math.abs(x - i))
                 if (x === i) {
                     answer.push(x);
                     break;
                 }
             } else {
-                // console.log('ff', x, i);
                 if (!set.has(i) && Math.abs(x - i) < count[0]) {
                     count = [Math.abs(x - i), i];
                 }
@@ -31,12 +28,9 @@ if (Number(n) !== 100) {
         if (count[0] !== 11) answer.push(count[1]);
     }
 }
-// console.log(set, answer);
 
 let numCount = answer.length;
 let curNum = Number(answer.join(''));
-// console.log(Math.abs(100 - Number(n)));
-// console.log(curNum);
 
 numCount +=
     Math.abs(100 - Number(n)) < Math.abs(curNum - Number(n)) ? Math.abs(100 - Number(n)) : Math.abs(curNum - Number(n));
